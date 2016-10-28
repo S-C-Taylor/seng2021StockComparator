@@ -1,0 +1,8 @@
+{
+    "name": "OGSengCrewStockMarket",
+    "dependencies": {
+        "bootstrap": "latest",
+        "jquery-ui": "latest",
+        "randomcolor": "latest"
+    }
+}

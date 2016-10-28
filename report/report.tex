@@ -1,0 +1,554 @@
+\documentclass[11pt]{article}
+
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage[utf8]{inputenc}
+\usepackage[pdftex]{color}
+\usepackage{xspace,listings}
+\usepackage{parskip} %This stops indenting
+\usepackage{color} %colours!
+\usepackage{xcolor}
+
+\numberwithin{figure}{section}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\lhead{OG SENG 1A Crew}
+\rhead{Page \thepage}
+\cfoot{SENG2B - OG Stock Comparator}
+\renewcommand{\headrulewidth}{0.6pt}
+\renewcommand{\footrulewidth}{0.6pt}
+
+\begin{document}
+%\begin{titlepage}
+%    \title{\bfseries SENG2021 Final Report}
+%    \author{Kaan Apaydin \and Orion Larden \and Damon Lee \and Kevin Luo \and Simon Taylor}
+%    \date{\vspace{-5ex}}
+%    \maketitle
+%    \thispagestyle{empty}
+%\end{titlepage}
+
+
+\begin{titlepage}
+
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}} % Defines a new command for the horizontal lines, change thickness here
+
+\center % Center everything on the page
+ 
+
+\textsc{\LARGE University of New South Wales}\\[1.5cm] % Name of your university/college
+\textsc{\Large Software Engineering Workshop 2B}\\[0.5cm] % Major heading such as course name
+\textsc{\large SENG2021}\\[0.5cm] % Minor heading such as course title
+
+
+\HRule \\[0.4cm]
+{ \huge \bfseries OG Stock Comparator}\\[0.175cm] % Title of your document
+\HRule \\[1.5cm]
+ 
+
+\begin{minipage}{0.4\textwidth}
+\begin{flushleft} \large
+\emph{Authors:}\\
+Orion \textsc{Larden} \\
+Kaan \textsc{Apaydin} \\
+Damon \textsc{Lee} \\
+Kevin \textsc{Luo} \\
+Simon \textsc{Taylor} \\
+\end{flushleft}
+\end{minipage}
+~
+\begin{minipage}{0.4\textwidth}
+\begin{flushright} \large
+\emph{Supervisor:} \\
+Fethi \textsc{Rabhi} % Supervisor's Name
+\end{flushright}
+\end{minipage}\\[1cm]
+
+
+
+%----------------------------------------------------------------------------------------
+%	LOGO SECTION
+%----------------------------------------------------------------------------------------
+
+\includegraphics[width=6cm,height=6cm,keepaspectratio]{"images/Logo".png}\\[1cm] %
+ 
+%----------------------------------------------------------------------------------------
+
+{\large \today}\\[3cm] 
+
+\vfill % Fill the rest of the page with whitespace
+\end{titlepage}
+
+\tableofcontents
+\thispagestyle{empty}
+\clearpage
+
+\section{System Scope and Specification}
+    \subsection{Project Theme}
+        For the duration of the course, the team decided to undertake a financial themed project, specifically relating to stock markets and the growth of various stocks during a given time period. The project was a web application (viewable on Chrome, Firefox, Microsoft Edge etc) that navigated and scraped through online resources relating to stock price such as Yahoo! Finance as well as utilised the Quandl API, to collect and rank the growth of respective stock prices in a list. The purpose of the project was to show the various stocks that have experienced growth/decay over a given period of time, to help clients make an informed investment. 
+        
+        \bigskip
+        \noindent
+        For example, a long term investor may want access to the top 50 stocks that have experienced the most growth over the past 10 years, however this information may not be useful to the short term investor who may want to invest in more risky stocks that are currently experiencing explosive growth, in order to make quick profit instead.
+    
+    \subsection{Use Cases}
+        From the feedback given from our initial report as well as subsequent changes made to the project, the team has updated the use cases to represent the final prototype that has been developed.
+        
+        \subsubsection{Ranking List}
+            Figure \ref{fig:rankUseCase} displays the interactions between user and server throughout the ranking list use case. The use case begins when the user loads the website homepage. The server then responds by displaying the ranking list. Afterwards, the user can change the list’s time period or industry category, or search for a particular stock. The user's actions prompts the server to update the list accordingly. Finally, the user can click on a particular stock and the server then returns information on the stock requested.
+        
+            \begin{figure}[htp]
+                \centering
+                \makebox[0pt] {
+                    \includegraphics[scale=0.726]{"images/Basic Use Case Diagram - Standard".png}
+                }
+                \caption{Use case for viewing the ranking list}
+                \label{fig:rankUseCase}
+            \end{figure}
+    
+        \subsubsection{Comparing Stocks}
+            Figure \ref{fig:compareUseCase} displays the user and server interactions during the stock comparison use case. The use case begins when the user navigates to the compare page or clicks on the compare button, upon which the server then loads the comparison page.
+        
+            \bigskip
+            \noindent
+            Once the user searches for a stock and the server has replied with the search results, the user can then add stocks to the comparison by clicking on them in the search result. The user can also remove stocks and change the time period of the comparison and upon doing so, the server updates the graph accordingly. Furthermore, a user can hover over individual points in the graph to obtain the percentage of stock growth/decay at that particular point in time.
+        
+            
+            \begin{figure}[htp]
+                \centering
+                \makebox[0pt] {
+                    \includegraphics[scale=0.726]{"images/Basic Use Case     Diagram - Standard (1)".png}
+                }
+                \caption{Use case for comparing stocks}
+                \label{fig:compareUseCase}
+            \end{figure}
+            \clearpage
+
+        %needs to be reworked with sequence diagrams    
+        \subsubsection{Activity Diagrams}
+            We have also included two activity diagrams which depict the flow our system whenever the user interacts with our website. Each diagram describes each of our use cases, displaying stocks and comparing stocks. There are no termination points, as these only happen when the user exits out of a page and moves to a different page or in other words, executes the other use case.
+        
+            \begin{figure}[htp]
+                \centering
+                \makebox[0pt] {
+                    \includegraphics[scale=0.80]{"images/Activity Diagram Display Stock".png}
+                }
+                \caption{Activity diagram for displaying stocks}
+                \label{}
+            \end{figure}
+         
+            \begin{figure}[htp]
+                \centering
+                \makebox[0pt] {
+                    \includegraphics[scale=0.95]{"images/Activity Diagram Compare Stock".png}
+                }
+                \caption{Activity diagram for comparing stocks}
+                \label{}
+            \end{figure}
+        
+        \clearpage
+        
+    %end of stuff that needs to be reworked
+        
+    \subsection{System Functions} 
+    The following list contain system functions that are core to the operation of the prototype.
+    
+    \bigskip
+    \noindent
+    {\bfseries Generating a ranking list based on time:} As the user selects different time periods as shown in Figure \ref{fig:rankListDgram}, the system will collect data on the stock activity during these times, calculate the stock growth of each stock and then rank them in a list which is displayed on the webpage for the user to see.
+    
+    \bigskip
+    \noindent
+    {\bfseries Generating a ranking list based on industry:} As the user selects an industry on the side button menu, the server will filter and display only those stocks which fall under that category. From this, the user can manipulate the list based on time period, for that select industry, the same way the user would be able to normally for the default stock list. This function was a suggested feature following the first project demonstration and thus, it is not included in the initial interface mock-ups below.
+    
+    \bigskip
+    \noindent
+    {\bfseries Expanded stock view:} When the user clicks on a stock in the list, the item will expand as shown in Figure \ref{fig:stockExpandDgram}. The expanded view displays information relating to the stock such as growth over time, range, high and low values, etc. The information is displayed with respect to the chosen time period and updates accordingly when the user selects a different time period. In addition, the expanded view can be closed by clicking on the stock again.
+    
+    \bigskip
+    \noindent
+    {\bfseries Displaying news articles relevant to the stock:} In conjunction to the chart, the expanded view features a news feed relating to the relevant stock. Using an API provided by WebHose.io we are able to populate a list to hold relevant news postings. Each posting features a thumbnail, a title, some body text and a link to the full article. We have done our best to keep it compact and un-intrusive yet easy to use.  As with generating a ranking list based on industry, this feature was suggested in the feedback of the first project demonstration and hence, it is not included in the interface mock-ups.
+  
+
+    \bigskip
+    \noindent
+    {\bfseries Comparing Stocks:} Figure \ref{fig:compareStockDgram} depicts the user interface that will be used when a user wishes to make a comparison against multiple stocks. The user can search for and add stocks to the graph, which also appear in a list for easy removal. Hovering over any data point of the graph will pop up information on all stocks at that point in time. Above the graph there are toggle buttons which allow the user to change the time period of the graph. Clicking these buttons will modify the graph’s data plots and it’s axis to reflect the new time period selected.
+
+    \bigskip
+    \noindent
+    {\bfseries Searching stocks:} The search bar of Figure \ref{fig:compareStockDgram} allows the user to be able to search for info for any particular stock they wish to see. The server should return the closest match to the search and display the stock’s information below the search bar. In addition, this can be used in conjunction with our compare feature to compare multiple stocks of the user’s liking.
+    
+    \begin{figure}[htp]
+        \centering
+        \makebox[0pt] {
+            \includegraphics[scale=0.17]{"images/list diagram".jpg}
+        }
+        \caption{Displays the stock ranking list which functions as the homepage}
+        \label{fig:rankListDgram}
+    \end{figure}
+    
+    \begin{figure}[htp]
+        \centering
+        \makebox[0pt] {
+            \includegraphics[scale=0.17]{"images/expand diagram".jpg}
+        }
+        \caption{Displays the drop down graph after clicking on the list item}
+        \label{fig:stockExpandDgram}
+    \end{figure}
+    
+    \begin{figure}[htp]
+        \centering
+        \makebox[0pt] {
+            \includegraphics[scale=0.17]{"images/compare diagram".jpg}
+        }
+        \caption{Displays a comparison of multiple stocks against one another}
+        \label{fig:compareStockDgram}
+    \end{figure}
+    \clearpage
+    
+\section{User Interface Design}
+    \subsection{Overview}    
+        The overall view and design of our website was based around a simple yet detailed navigation system. Featuring easy to browse and efficient point and click gestures, the user is presented with a highly maneuverable and customisable page. Navigation between timelines and different pages is non-intrusive and visually appealing. Every page is connected back to the original screen through the ‘Home Button’ which is very accessible but not distracting.
+
+        \bigskip
+        \noindent
+        The design and flow of the ranking list page is simple and elegant. It enables the user to clearly ascertain the order of each company’s stock growth in the list as well readily access more information with the simple search and scroll bar features. The use of infinite drastically reduces load time and infinitely more appealing as it eliminates the need to refresh the page each time the end of the page is reached. The simplistic nature of the design adheres to the clarity design principle in order for the user to obtain and infer information easily. 
+        
+        \bigskip
+        \noindent
+        We have choosen to use the side bar column to hold our Stock Grouping buttons instead of a drop down menu to reduce clutter and improve visibility of the Ranking List. This adheres to the 'three-click-rule' navigation principle and reduces the amount of clicking and searching needed to filter by group.
+        
+        \bigskip
+        \noindent
+        This simplistic design is seen throughout the user interface which adheres to the consistency design principle as well. A rigid “column like” structure of the ranking list and buttons, was chosen to give off the impression of order and succinctness to the user, a trait that is critical to investors. The simplistic colour palette combined with the large buttons/icons were purposefully designed as to simplify navigation and not overwhelm the user with barbaric colour schemes. 
+    
+    \subsection{Home Page Interface Design}
+        Our web page is based around the ‘Ranking list’ homepage. This is set up as an interactive list of scrollable elements that show the company name, its rank in comparison to other companies and its growth respective to the time period selected. When the user displays the home page (shown in Figure \ref{fig:listWire}), they’ll see the first top fifteen companies with the greatest stock price growth for the last week. 
+        
+        From here, the user is also able to switch time periods and/or industry to display a new ranking list of stock growth (shown in Figure \ref{fig:listDayWire}). In addition to displaying the first fifteen items, the user can scroll down to generate the next items in the list (similar to how Facebook will generate new posts once you scroll to the bottom), or alternatively search for a specific company in the list. Furthermore, the industry tags are located on the side of the home page as a list of small buttons,each of which contain a specific industry that the user can select to filter stocks.
+        
+
+        \begin{figure}[htp]
+            \centering
+            \makebox[0pt] {
+                \includegraphics[scale=0.4]{"images/Ranking List".png}
+            }
+            \caption{The home page of the website}
+            \label{fig:listWire}
+        \end{figure}
+        \clearpage
+        
+        \begin{figure}[htp]
+            \centering
+            \makebox[0pt] {
+                \includegraphics[scale=0.4]{"images/Technology List Daily".png}
+            }
+            \caption{Shows a new ranking list as the user selects the technology and daily buttons}
+            \label{fig:listDayWire}
+        \end{figure}
+        
+    \subsection{Stock Search}
+        As mentioned previously, the search bar allows the user to search for any given stock in the list for a given time period. The search bar incorporates dynamic searching (shown in Figure \ref{fig:listSearchWire}), similar to Google’s autofill searches, which allows the user to differentiate companies with a similar name as well as to alert the user of the position the particular company is in the list, without even having to go through with the search query. Once the user selects an item in the search menu, the list will snap down to that item in the list, displaying the company stock growth for the given company as well as the subsequent companies below it (shown in Figure \ref{fig:listSearchResultWire}).
+       
+        \begin{figure}[htp]
+            \centering
+            \makebox[0pt] {
+                \includegraphics[scale=0.4]{"images/Ranking List - Search".png}
+            }
+            \caption{Auto-filling dynamic searching}
+            \label{fig:listSearchWire}
+        \end{figure}
+        
+        \begin{figure}[htp]
+            \centering
+            \makebox[0pt] {
+                \includegraphics[scale=0.4]{"images/Ranking List - After Search".png}
+            }
+            \caption{Snapping down to selected stock}
+            \label{fig:listSearchResultWire}
+        \end{figure}
+       
+    \subsection{Expanding Stocks}
+        While browsing the Ranking List the user has the option to view more information about a given stock. Clicking on a stock item will initiate a smooth dropdown animation as the element is expanded. This expansion presents the user with an interactable graph, useful stock price information, an option to compare this stock against others (shown in Figure \ref{fig:expandListWire}), as well as news articles relating to the particular stock.
+
+        \bigskip
+        \noindent
+        The drop down animation automatically extends the list, sliding some elements out of view, gives the user a rewarding experience in return for their action. In accordance with responsive design, hovering over data-plots loads a tooltip which enlarges the value of that datapoint and other information the price.  Clicking the top of the stock element again will snap the element back into its simplified form. Located to the side of the graph is a scrollable column containing several news articles, each of which have an image, a title and subsequent text underneath. Located near the bottom of the graph is the large "Compare" button. When clicked, the user will be sent to the stock comparison page (shown in Figure \ref{fig:switchWire}).
+        
+        
+        \bigskip
+        \begin{figure}[htp]
+            \centering
+            \makebox[0pt] {
+                \includegraphics[scale=0.4]{"images/Stock Expanded".png}
+            }
+              
+            \caption{Expanding a stock item}
+            \label{fig:expandListWire}
+        \end{figure}
+        \clearpage
+        
+        \begin{figure}[htp]
+            \centering
+            \makebox[0pt] {
+                \includegraphics[scale=0.4]{"images/compare0".png}
+            }
+            \caption{Switching to compare page}
+            \label{fig:switchWire}
+        \end{figure}
+        
+    \subsection{Stock Comparison}
+        The stock comparison page is used to compare numerous stocks. Users search for particular stocks and add them by clicking on the desired stock from a list of results. Stocks may also be removed by clicking the remove icon beside the stock. Adding and removing to the list of stocks automatically updates the graph at the bottom of the page. Users select the time period of the comparison using the buttons just above the graph. The following mockups demonstrate the roles and functionality of the user interface elements.
+        
+        \subsubsection{Adding Stock}
+            Suppose that the user wishes to add Microsoft to the list. The user will input a term into the search bar and a drop-down menu will automatically appear with the relevant stocks, as shown in Figure \ref{fig:compareSearchWire}. When the user clicks on a stock in the drop-down menu, it is added to the list. Figure \ref{fig:compareAddWire} shows Microsoft added to the bottom of the list after being clicked on. Upon adding the stock, the graph updates accordingly.
+            
+            \begin{figure}[htp]
+                \centering
+                \makebox[0pt] {
+                    \includegraphics[scale=0.4]{"images/comp1".png}
+                }
+                \caption{Search for stock}
+                \label{fig:compareSearchWire}
+            \end{figure}
+            \clearpage
+            
+            \begin{figure}[htp]
+                \centering
+                \makebox[0pt] {
+                    \includegraphics[scale=0.4]{"images/comp2".png}
+                }
+                \caption{Stock added}
+                \label{fig:compareAddWire}
+            \end{figure}
+            
+        \subsubsection{Changing Compare Period}
+            Users can change the comparison time period by selecting the desired time as depicted in Figure \ref{fig:compareTimeWire}.
+            
+            \clearpage
+            \begin{figure}[htp]
+                \centering
+                \makebox[0pt] {
+                    \includegraphics[scale=0.4]{"images/comp3".png}
+                }
+                \caption{Changing time period}
+                \label{fig:compareTimeWire}
+            \end{figure}
+        
+        \subsubsection{Removing Stock}
+            Now suppose the user wishes to remove Microsoft. The user clicks the ‘X’ icon beside the Microsoft stock which removes it updates the graph accordingly, as seen in Figure \ref{fig:compareRemoveWire}.
+            \clearpage
+            
+            \begin{figure}[htp]
+                \centering
+                \makebox[0pt] {
+                    \includegraphics[scale=0.4]{"images/comp4".png}
+                }
+                \caption{Stock removed}
+                \label{fig:compareRemoveWire}
+            \end{figure}
+            
+    \subsection{Brief Summary}
+        We have included a simple storyboard to summarise the content in this report. The storyboard explains the interactions between the elements in each page and between pages.
+        
+        \clearpage        
+        \begin{figure}[htp]
+            \centering
+            \makebox[0pt] {
+                \includegraphics[scale=0.8]{"images/storyboard".png}
+            }
+            \caption{User Interface Story Board}
+            \label{}
+        \end{figure}
+
+\section{Sequence Diagrams}
+    \subsection{Ranking List Use Case}
+        All use cases under the ranking list use case follows the basic overview in the sequence diagram below.
+        
+        \begin{figure}[htp]
+                \centering
+                \makebox[0pt] {
+                    \includegraphics[scale=0.5]{"images/Ranking List Sequence Diagram".png}
+                }
+                \caption{Sequence diagram for ranking list use case}
+                \label{fig:rankingListSequence}
+        \end{figure}
+    
+    \subsection{Comparing Stocks Use Case}
+        All use cases under the comparing stocks use case with the exception of the removing stock use case follows the basic overview in the sequence diagram below.
+        
+        \begin{figure}[htp]
+                \centering
+                \makebox[0pt] {
+                    \includegraphics[scale=0.5]{"images/Compare Sequence Diagram".png}
+                }
+                \caption{Sequence diagram for ranking list use case}
+                \label{fig:rankingListSequence}
+        \end{figure}
+        
+        The removing stocks use case is unique to the other use cases and is as follows:
+        
+        \begin{figure}[htp]
+                \centering
+                \makebox[0pt] {
+                    \includegraphics[scale=0.5]{"images/Compare-Delete Sequence Diagram".png}
+                }
+                \caption{Sequence diagram for ranking list use case}
+                \label{fig:rankingListSequence}
+        \end{figure}
+        
+\section{Software Architecture}
+    \subsection{Software Components}
+        {\bfseries Node.js:} Node.js is the run-time environment which executes our back-end Javascript code. This is effectively the backbone of our back-end implementation.
+     
+        \bigskip
+        \noindent
+        {\bfseries Express.js:} As users browse the website, the front-end components retrieve necessary information from the database using HTTP requests. Express.js is the back-end framework used to handle such requests. For example, when a user searches for a stock, the front-end passes on the query to the web server's back-end. Express.js handles this query and returns the relevant stocks as a JSON object. Express.js forms the majority of our back-end implementation.
+       
+        \bigskip
+        \noindent
+        {\bfseries MongoDB:} MongoDB is the database we use to store stocks on our web server. MongoDB is a NoSQL database which stores JSON-like objects.
+        
+        \bigskip
+        \noindent
+        {\bfseries Bootstrap and Jquery:} The front-end of our system is comprised of a combination of Bootstrap and Jquery. Bootstrap is a front-end framework that is used for designing websites through HTML and CSS templates. jQuery is a Javascript library which runs on the front-end of the system and provides an interactive user interface.
+   
+        \bigskip
+        \noindent
+        {\bfseries Chart.js:} Charts.js is a powerful Javascript graphing library which we utilise to deliver simplistic and interactive stock data to the user. The library is flexible enough for us to simply pump data straight from our database into the chart and manipulate the labels to show the time scale. Its flexibility extends to the aesthetics of the graph. We were able to easily add animations, unique colour schemes, custom line tensions, and tooltips.
+        
+        \bigskip
+        \noindent
+        {\bfseries WebHose.io:} In order to retrieve this news for our news feeds we use an API provided by WebHose.io. This API connects us to a vast database of news articles, blog posts and forum threads that have been freshly scraped from the Internet. We are also able to ensure quality and relevancy on the news by placing restrictions on our query such as, date, high social media presence and matching by keywords. 
+        
+        
+        \bigskip
+        \noindent
+        {\bfseries Quandl:} The driving force behind our solution is a means to be able to grab both up-to date and historical financial records for companies. Quandl is the end point for hundreds of financial databases, the information from the databases can be viewed on their website, exported or, most importantly accessed through their REST API. Our solution requires being able to acquire daily stock prices of companies across a given time line. Quandl allows us to do this very easily, we can get the daily closing stock price of Facebook with a few simple parameters.
+
+        \bigskip
+        \noindent
+        \underline{Company:} FB
+    
+        \noindent
+        \underline{Start Date:} start\_date=2014-01-01
+    
+        \noindent
+        \underline{End Date:} start\_date=2014-12-31
+    
+        \noindent
+        \underline{Collapse:} collapse=daily
+    
+        \bigskip
+        \noindent
+        To produce the request:
+    
+        \noindent
+        https://www.quandl.com/api/v3/datasets/WIKI/FB.json?column\_index=4\&start\_date=2014-01-01\&end\_date=2014-12-31\&collapse=daily\&api\_key=(6Bc43JXNTrFsXTqtgY3D)
+
+        \bigskip
+        \noindent
+        We get a JSON response which has a closing price for each day of 2014.
+
+        \bigskip
+        \noindent
+        For demonstration purposes, we are using a free Quandl account. Free accounts have limited features and are subjected to a limit of 2000 API calls per 10 minutes. We feel that the services available for free accounts are more than sufficient for demonstration purposes.
+
+    \subsection{Relationships Between Components}
+        Our back end will feature the ability to grab and compare the growth and demand of different companies from NASDAQ. This data will be fetched and processed by our Node.js backend, utilising Quandl’s API to retrieve the information in a JSON response and then using a JSON parser to extract the information. The extracted information is then passed to our MongoDB database to be stored until the user requests for it. When the user expands a stock item, the Javascript function responsible for stock item expansions will initialize an AJAX call to the Express framework which fetches data from the database. This data is then loaded into the charts module which displays the data in a graphical fashion. The same Javascript function which handles stock item expansions also loads the latest news about the stock. This is done through a asynchronous HTTP GET request to the Webhose.io API. When the data returns from the API call, we parse it through a JSON parser and display it on the screen.
+        
+        \begin{figure}[htp]
+            \centering
+            \makebox[0pt] {
+                \includegraphics[scale=0.9]{images/"System Architecture".png}
+            }
+            \caption{Software Components Relationship Diagram}
+            \label{}
+        \end{figure} 
+          
+\section{Implementation Considerations}
+    \subsection{Choice of Web Technology/Framework}
+        Initially we had decided to use the MEAN stack or: MongoDB, Express, AngularJS and Node.js. However, due to various reasons such as problems with AngularJS and advice from our mentors, we transitioned to a variation of the MEAN stack whereby we swapped AngularJS with Bootstrap and JQuery. This has not affected the operation of our stack in any adverse way.
+        
+        \bigskip
+        \noindent
+        For the front end, as specified above, we are now using a combination of Bootstrap and JQuery. We have decided on using these technologies as we have found them easy to use to achieve the functionality and design of the website. Bootstrap readily provides a CSS file loaded with a variety of element designs which we can use to put together a website easily. JQuery allows us to embed interactive elements into the website to provide for a more interesting and pleasing experience.
+        
+        \bigskip
+        \noindent
+        As for the back end, it consists of MongoDB, Express and Node.js. This is due to the versatility of JavaScript and the ability of Node.js to handle an event-driven environment. Express is necessary and also complements Node.js as it provides the request handling needed for us to build our web application. Although we only have to enough data to satisfy the requirements of a prototype, MongoDB is useful in that the records are stored as JSON-like documents. This is allows ease in converting data from collected from web APIs to records to be stored in our database.
+        
+    \subsection{Relating Choices to Components}
+        As explained in the section above, we have decided to use a variation of the MEAN stack where we swap AngularJS with Bootstrap and JQuery. The reason we chose to use this particular stack was because we wanted to explore innovative and exciting options. This course was our first try at developing a web based application that incorporates the use of web APIs. Although we thought it might have been a bit difficult using such an advanced stack for our first web application, we believe it would be worth the effort to learn something which the industry will be using frequently in the near future.
+        
+        \bigskip
+        \noindent
+        Aside from our own personal reasons, we thought that the MEAN stack was advantageous in several ways. The stack heavily relies on Javascript, which is widely believed to be a better web language than its counterpart, PHP. Javascript could do more in far fewer lines and has more functionality than PHP. It is also widely supported by many browsers and there are many free open source libraries which offer additional functionality.
+        
+        \bigskip
+        \noindent
+        MongoDB uses NoSQL and is the alternative to SQL and its variations. There are many advantageous of MongoDB which include:
+        \begin{itemize}
+            \item Data is stored in a JSON format which allows for easy retrieval and parsing.
+            \item Easy to setup.
+            \item Small in size and uses little system resources.
+        \end{itemize}
+        
+        \bigskip
+        \noindent
+        Node.js was used instead of and not with Apache or any other web server technology due to the nature of our web application. It is a interactive application where the page will change dynamically based on user input. As stated before, Javascript is a more promising technology compared to the combination of Apache and PHP. Express was added due to the excellent synergy with Node.js. It provides extended features on top of Node.js and helps manage routing between front end and back end elements.
+        \bigskip
+        \noindent
+        Lastly, Bootstrap and JQuery was used instead of other alternatives such as AngularJS or React as they were easier to use and had extensive documentation available. JQuery also provides us with additional functionality such as auto-complete and chart plotting libraries.
+
+    \subsection{Choice of Platform}
+        Our web application will be run on an Linux machine utilizing Node.js as its web server software. This is due to Linux being lightweight and familiar. We will be employing the help of Amazon Web Services to deploy our website on their machines. Specifically, the website will be running 24/7 on a EC2 instance. As for clients, we intend to have the web application usable by all sorts of browsers that support Javascript and obviously HTML.
+        
+    \subsection{Licensing of Components}
+        When choosing the components to use in our system, we also considered the licensing aspect of project design. We ensured that all components used were distributed under either an open source license or public domain.
+        
+        \bigskip
+        \noindent
+        Node.js, Express.js, Bootstrap, jQuery and Chart.js are all open source components that are distributed under the MIT License. Under this license, we are able use, copy, modify, merge, publish, distribute, sub-license, and/or sell copies of the component without restriction.
+        
+        \bigskip
+        \noindent
+        MongoDB is also open source and is distributed under the GNU Affero General Public License. The license requires that modifications to the source code are made publicly available. We weren't required to make any modifications to MongoDB, so this is not an issue for us.
+        
+        \bigskip
+        \noindent
+        The information provided by Quandl is Public Domain. We may copy, distribute, disseminate or include the data in other products for commercial and/or noncommercial purposes.
+        
+\section{Conclusion (Team Organisation/Appraisal)}
+    \subsection{Responsibilities of the Team}
+        \subsubsection{General Team Roles}
+            For the duration of the course, the team utilised the scrum process to develop the project. Kaan took on the role as scrum master and facilitated meetings as well as assigned deadlines of certain tasks. Damon took on the role of product owner and thus all design ideas were discussed with Damon before Damon made the ultimate decision on a particular design. The rest of the team were appointed as scrum members.
+            
+        \subsubsection{Project Specific Roles}
+            
+        In terms project specific roles, the team worked on different parts of the prototype as follows:
+        
+        \begin{itemize} 
+            \item Damon was in charge of the design of the prototype, focusing his attention on developing the layout of UI and interaction between elements
+            
+            \item Orion majorly focused on the developing the backend, this included routing between pages as well as transferring data from the backend database and displaying it on the frontend
+            
+            \item Simon worked on displaying the interactive graphs in our UI as well as implementing the news article API next to the graphs.
+            
+            \item Kaan worked on processing the data from the Qandle API and storing it into the database, as well as styling of CSS and bootstrap elements.
+            
+            \item Kevin worked generally on all areas of the project mainly testing and debugging code, as well as worked on a majority of the reports
+        \end{itemize}
+    \subsection{Organisation}
+        Scrum meetings were held twice a week (one in person and one via Skype) to discuss the tasks that were completed, tasks that needed to be completed in the foreseeable future, as well as any factors that might hinder our ability to complete the tasks assigned by the given deadline. In addition a Gantt Chart was prepared to help ensure that all team members were on the same page and that tasks were completed by the given deadline. Several Google documents were created to work collaboratively on the reports as well as note down several ideas that team members had during meetings.
+        
+    \subsection{How Did the Project Go?}
+        In the teams unanimous opinion, we felt that although time constraints were a little heavy for the big project we set out to develop, we ultimately are satisfied with the prototype that we have developed. The team feels that this experience has bestowed many valuable lessons, not only gaining experience on working collaboratively within a group environment but also gaining exposure to the many languages needed to develop the prototype for this project.
+
+    \subsection{Issues}
+        The issues encountered weren’t necessarily related to team cohesion or arguments among team members but more so related to time constraints on accomplishing certain tasks by a given deadline. All team members had taken a networking course (COMP3331) and a software construction course (COMP2041) during this semester, both of which released assignments and several lab exercises which harshly added to the already demanding workload of the SENG2021 course. This coupled with the fact that the team needed to learn several languages and become familiar with software such as MongoDB presented some issues to the team.
+    
+    \subsection{Conclusion}    
+    Looking back on the project and the events that transpired, starting from developing draft UI designs to finishing a working prototype, the team is satisfied with their performance and thus wouldn’t change a thing given the opportunity to start over.
+    
+\end{document}

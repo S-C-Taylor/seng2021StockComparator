@@ -1,0 +1,14 @@
+{
+    "name": "OGSengCrewStockMarket",
+    "main": "server.js",
+    "scripts": {
+        "start": "node server.js",
+        "dbUpdate" : "node app/stockGrabber.js"
+    },
+    "dependencies": {
+        "mongodb": "2.2.10",
+        "express": "4.14.0",
+        "body-parser": "1.15.2",
+        "follow-redirects": "0.2"
+    }
+}

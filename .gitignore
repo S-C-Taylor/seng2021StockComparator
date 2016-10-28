@@ -1,0 +1,10 @@
+# ignore modules/components
+node_modules
+bower_components
+# ignore logs
+*.log
+# ignore latex files
+*.tex.bak
+*.toc
+*.aux
+*.pdf

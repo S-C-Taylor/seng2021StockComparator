@@ -1,0 +1,10 @@
+.affix-top {
+    background-color: #FFFFFF;
+    padding-top: 30px;
+    padding-bottom: 15px;
+    /* padding-left: 15%; */
+    margin-top: 20px;
+    margin-bottom: 40px;
+    position: fixed;
+    z-index: 100;
+}

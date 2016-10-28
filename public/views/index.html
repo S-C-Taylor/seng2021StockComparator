@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        <title>OG Stock Comparer</title>
+     
+        <!-- Custom Loading -->
+        <link href="/components/folding-cube.css" rel="stylesheet">
+
+        <!-- Custom Affix to Top -->
+        <!--><link href="/components/affix-top.css" rel="stylesheet"> -->
+
+        <!-- Bootstrap Core CSS -->
+        <link href="/components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link href="/components/bootstrap/dist/css/custom-theme/jquery-ui-1.10.0.custom.css" rel="stylesheet">
+        <link href="/components/bootstrap/dist/css/custom-theme/jquery-ui-1.9.2.custom.css" rel="stylesheet">
+        
+        <!-- jQuery Version 1.11.1 -->
+        <script src="/components/jquery/dist/jquery.min.js"></script>
+        <script src="/components/jquery-ui/jquery-ui.js"></script>
+
+        <script src="/components/charts/dist/Chart.js"></script>
+
+        <!-- Bootstrap Core JavaScript -->
+        <script src="/components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+        <!-- Random Color Library -->
+        <script src="../components/randomcolor/randomColor.js"></script>
+        
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+
+       
+        <!-- Custom CSS -->
+        <style>
+            body {
+                padding-top: 70px;
+    /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+            }
+            .panel-group .panel + .panel {
+                margin-top: 30px;
+            }
+            .btn-group-vertical .btn + .btn {
+                margin-top: 10px;
+            }
+            .wrapper {
+                margin 0 auto;
+            }
+            .side_bar {
+                position: fixed;
+                padding-top: 70px;
+                padding-bottom: 100%;
+                background-color:#363732;
+                z-index: 300;
+                padding-left: 20px;
+                padding-right: 20px;
+            }
+            .list {
+                /* float: left; */
+                /* width: 85%; */
+            }
+        </style>
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+    </head>
+
+    <body style="max-width: 100%; overflow-x: hidden;">
+
+        <div class="folding-cube-wrapper">
+            <div class="sk-folding-cube">
+                <div class="sk-cube1 sk-cube"></div>
+                <div class="sk-cube2 sk-cube"></div>
+                <div class="sk-cube4 sk-cube"></div>
+                <div class="sk-cube3 sk-cube"></div>
+            </div>
+        </div>
+
+        <div class="wrapper">
+            <!-- Navigation -->
+            <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+                <div class="container">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <!-- <a class="navbar-brand" href="#">Start Bootstrap</a> -->
+                        <a href="/"><img src="/images/logo.png" alt="SENGOG Crew" style="width:144px;height:120px;"></a>
+
+                    </div>
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav">
+                            <li>
+                                <a href="/compare">Compare</a>
+                            </li>
+                            <!-- <li> -->
+                            <!--     <a href="#">About</a> -->
+                            <!-- </li> -->
+                        </ul>
+                    </div>
+                    <!-- /.navbar-collapse -->
+                </div>
+                <!-- /.container -->
+            </nav>
+
+            <div class="side_bar">
+                <div class="btn-group-vertical btn-group-xs" data-toggle="buttons">
+                    <label class="btn btn-default" onclick="changeIndustry('all')">
+                        <input type="radio" name="options" checked="checked">All
+                    </label>
+                    <label class="btn btn-default" onclick="changeIndustry('Basic Industries')">
+                        <input type="radio" name="options">Basic Industries
+                    </label>
+                    <label class="btn btn-default" onclick="changeIndustry('Capital Goods')">
+                        <input type="radio" name="options">Capital Goods
+                    </label>
+                    <label class="btn btn-default" onclick="changeIndustry('Consumer Durables')">
+                        <input type="radio" name="options">Consumer Durables
+                    </label>
+                    <label class="btn btn-default" onclick="changeIndustry('Consumer Non-Durables')">
+                        <input type="radio" name="options">Consumer Non-Durables
+                    </label>
+                    <label class="btn btn-default" onclick="changeIndustry('Consumer Services')">
+                        <input type="radio" name="options">Consumer Services
+                    </label>
+                    <label class="btn btn-default" onclick="changeIndustry('Energy')">
+                        <input type="radio" name="options">Energy
+                    </label>
+                    <label class="btn btn-default" onclick="changeIndustry('Finance')">
+                        <input type="radio" name="options">Finance
+                    </label>
+                    <label class="btn btn-default" onclick="changeIndustry('Healthcare')">
+                        <input type="radio" name="options">Healthcare
+                    </label>
+                    <label class="btn btn-default" onclick="changeIndustry('Miscellaneous')">
+                        <input type="radio" name="options">Miscellaneous
+                    </label>
+                    <label class="btn btn-default" onclick="changeIndustry('Public Utilities')">
+                        <input type="radio" name="options">Public Utilities
+                    </label>
+                    <label class="btn btn-default" onclick="changeIndustry('Technology')">
+                        <input type="radio" name="options">Technology
+                    </label>
+                    <label class="btn btn-default" onclick="changeIndustry('Transport')">
+                        <input type="radio" name="options">Transport
+                    </label>
+                </div>
+            </div>
+
+            <!-- <div class="side_bar"> -->
+            <!--     <font style="font-size:1.25em;font-weight: bold">Industry</font><br /> -->
+            <!--     <div class="radio"> -->
+            <!--         <label><input type="radio" name="optradio" checked="checked" onclick="changeIndustry('all')">All</label> -->
+            <!--     </div> -->
+            <!--     <div class="radio"> -->
+            <!--         <label><input type="radio" name="optradio" onclick="changeIndustry('Basic Industries')">Basic Industries</label> -->
+            <!--     </div> -->
+            <!--     <div class="radio"> -->
+            <!--         <label><input type="radio" name="optradio" onclick="changeIndustry('Capital Goods')">Capital Goods</label> -->
+            <!--     </div> -->
+            <!--     <div class="radio"> -->
+            <!--         <label><input type="radio" name="optradio" onclick="changeIndustry('Consumer Durables')">Consumer Durables</label> -->
+            <!--     </div> -->
+            <!--     <div class="radio"> -->
+            <!--         <label><input type="radio" name="optradio" onclick="changeIndustry('Consumer Non-Durables')">Consumer Non-Durables</label> -->
+            <!--     </div> -->
+            <!--     <div class="radio"> -->
+            <!--         <label><input type="radio" name="optradio" onclick="changeIndustry('Consumer Services')">Consumer Services</label> -->
+            <!--     </div> -->
+            <!--     <div class="radio"> -->
+            <!--         <label><input type="radio" name="optradio" onclick="changeIndustry('Energy')">Energy</label> -->
+            <!--     </div> -->
+            <!--     <div class="radio"> -->
+            <!--         <label><input type="radio" name="optradio" onclick="changeIndustry('Finance')">Finance</label> -->
+            <!--     </div> -->
+            <!--     <div class="radio"> -->
+            <!--         <label><input type="radio" name="optradio" onclick="changeIndustry('Healthcare')">Healthcare</label> -->
+            <!--     </div> -->
+            <!--     <div class="radio"> -->
+            <!--         <label><input type="radio" name="optradio" onclick="changeIndustry('Miscellaneous')">Miscellaneous</label> -->
+            <!--     </div> -->
+            <!--     <div class="radio"> -->
+            <!--         <label><input type="radio" name="optradio" onclick="changeIndustry('Public Utilities')">Public Utilities</label> -->
+            <!--     </div> -->
+            <!--     <div class="radio"> -->
+            <!--         <label><input type="radio" name="optradio" onclick="changeIndustry('Technology')">Technology</label> -->
+            <!--     </div> -->
+            <!--     <div class="radio"> -->
+            <!--         <label><input type="radio" name="optradio" onclick="changeIndustry('Transport')">Transport</label> -->
+            <!--     </div> -->
+            <!-- </div> -->
+
+
+            <div class="list">
+
+            <div class="affix-top" style="margin-left: 5em;">
+                <div class="row">
+                    <div class="col-lg-4 col-lg-offset-4">
+                        <div class="input-group">
+                            <input type="text" placeholder="Search for..." class="form-control autocomplete">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" id="searchBarButton" type="button">Go!</button>
+                            </span>
+                        </div><!-- input group -->
+                    </div><!-- /.col-lg-6 -->
+                </div>
+
+                <div style="height: 20px"></div>
+
+                <!-- time period -->
+                <div class="row">
+                    <div class="col-lg-6 col-lg-offset-3">
+                        <div class="btn-group btn-group-justified" role="group" aria-label="...">
+                            <div class="btn-group" role="group">
+                                <button type="button" class="btn btn-default" onclick="changeTime('daily')">Daily</button>
+                            </div>
+                            <div class="btn-group" role="group">
+                                <button type="button" class="btn btn-default active" onclick="changeTime('weekly')">Weekly</button>
+                            </div>
+                            <div class="btn-group" role="group">
+                                <button type="button" class="btn btn-default" onClick="changeTime('monthly')">Monthly</button>
+                            </div>
+                            <div class="btn-group" role="group">
+                                <button type="button" class="btn btn-default" onClick="changeTime('yearly')">Yearly</button>
+                            </div>
+                            <div class="btn-group" role="group">
+                                <button type="button" class="btn btn-default" onClick="changeTime('alltime')">All-time</button>
+                            </div>
+                        </div>
+                    </div> <!-- col-lg4 -->
+                </div>
+            </div>
+
+            <div style="height: 175px; width: 120%;"></div>
+
+            <!-- <div class="list"> -->
+            <div class="row" style="width: 120%; margin-left: -5em;">
+                <div class="col-lg-8 col-lg-offset-2">
+                    <div class="panel-group" id="accordion">
+                        <div class="panel panel-default template" style="display: none;">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+                                        Collapsible Group Item #2 (template panel)
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapseThree" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <div class="row">
+
+                                        <div class="col-lg-9">
+                                            <div style="width: 100%; height: 30%;">
+                                                <canvas id="myChart" width="1000" height="400"></canvas>
+                                            </div>
+                                            
+                                            <div class = "row">
+                                                <div class="col-lg-4">
+                                                    <p id="min" align="center"><b>Min</b>: $10.26 <i class="glyphicon glyphicon-arrow-down" style="color: #92050e;"></i></p>
+                                                </div>
+
+                                                <div class="col-lg-4">
+                                                    <p id="max" align="center"><b>Max</b>: $24.30 <i class="glyphicon glyphicon-arrow-up" style="color: #008542;"></i></p>
+                                                </div>
+
+                                                <div class="col-lg-4">
+                                                    <p id="range" align="center"><b>Range</b>: $14.04 <i class="glyphicon glyphicon-resize-horizontal" style="color: #0099CC;"></i></p>
+                                                </div>
+                                            </div>
+                                           
+                                            <div class="row">
+                                                <div class="col-lg-4">
+                                                    <p id="open" align="center"><b>Open Price</b>: $24.30</p>
+                                                </div>
+
+                                                <div class="col-lg-4">
+                                                    <p id="close" align="center"><b>Close Price</b>: $14.04</p>
+                                                </div>
+                                                    
+                                                <div class="col-lg-4">
+                                                    <p id="industry" align="center"><b>Industry</b>: $10.26</p>
+                                                </div>
+                                            </div>
+
+                                        <button class="btn btn-md btn-primary btn-add-panel" style="margin: 0 auto; display: block;">
+                                            <i class="glyphicon glyphicon-stats"></i>   Compare
+                                        </button> 
+                                        
+                                        </div>
+
+                                        <div class="col-lg-3">
+                                            <p id="news_header" align="center"><b>Latest News!</b>   <i class="glyphicon glyphicon-bullhorn"></i></p>
+                                            <p id="news_spinner" align="center"><i class="fa fa-spinner fa-spin" style="font-size:36px"></i></p>
+                                            <ul class="media-list" id="tempNewsList"  style="height: 0px; overflow-y: scroll; visibility: hidden;">
+                                               <!-- <li class="media">
+                                                  <div class="media-left">
+                                                    <a href="#">
+                                                      <img class="media-object" src="http://placehold.it/64x64" alt="..." style="height: 64px; width: 64px;">
+                                                    </a>
+                                                  </div>
+                                                  <div class="media-body">
+                                                    <h4 class="media-heading">Media heading</h4>
+                                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis lacus risus, dapibus sed leo nec, convallis rhoncus magna. Aliquam et vulputate ante. Sed eu tellus ut ligula laoreet tincidunt. Suspendisse et porta felis. 
+                                                  </div>
+                                                  </li> !-->
+                                            </ul>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> <!-- col-lg-4 -->
+            </div> <!-- row -->
+        </div><!-- list -->
+        </div>
+        <script src="/js/populate.js" type="text/javascript"></script>        
+        <script src="/js/getstock.js" type="text/javascript"></script>
+        <script src="/js/listsearch.js" type="text/javascript"></script>
+
+        <p id="demo"></p>
+
+    </body>
+    
+
+</html>
