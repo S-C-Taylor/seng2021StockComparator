@@ -2,7 +2,7 @@
 
 This repository belongs to OG SENG 1A Crew.
 
-This respository holds the source for our SENG2021 Project, OG Stock Comparator.
+This respository holds the source files for our SENG2021 Project, OG Stock Comparator.
 
 Our sample dataset is located in the "res" folder.
 
